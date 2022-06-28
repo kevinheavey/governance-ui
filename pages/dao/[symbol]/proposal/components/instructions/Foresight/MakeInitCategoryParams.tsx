@@ -17,7 +17,6 @@ const MakeInitCategoryParams = ({
     inputProps,
     effector,
     governedAccountSelect,
-    wallet,
   } = commonAssets<ForesightHasCategoryId>(
     { categoryId: '' },
     index,
@@ -26,7 +25,7 @@ const MakeInitCategoryParams = ({
   async function ixCreator(form: ForesightHasCategoryId) {
     const { ix } = await foresightGov.genInitCategoryIx(
       Buffer.from(form.categoryId.padEnd(20)),
-      wallet!.publicKey!
+      form.governedAccount.extensions.transferAddress!
     )
     return ix
   }

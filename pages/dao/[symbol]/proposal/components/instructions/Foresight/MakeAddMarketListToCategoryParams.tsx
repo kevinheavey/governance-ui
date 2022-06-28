@@ -21,7 +21,6 @@ function MakeAddMarketListToCategoryParams({
     inputProps,
     effector,
     governedAccountSelect,
-    wallet,
   } = commonAssets<ForesightMakeAddMarketListToCategoryParams>(
     { categoryId: '', marketListId: '' },
     index,
@@ -31,7 +30,7 @@ function MakeAddMarketListToCategoryParams({
     const { ix } = await foresightGov.genAddMarketListToCategoryIx(
       Buffer.from(form.categoryId.padEnd(20)),
       Buffer.from(form.marketListId.padEnd(20)),
-      wallet!.publicKey!
+      form.governedAccount.extensions.transferAddress!
     )
     return ix
   }

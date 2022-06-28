@@ -27,7 +27,6 @@ export default function MakeSetMarketMetadataParams({
     inputProps,
     effector,
     governedAccountSelect,
-    wallet,
   } = commonAssets<ForesightMakeSetMarketMetadataParams>(
     {
       marketListId: '',
@@ -47,7 +46,7 @@ export default function MakeSetMarketMetadataParams({
       Buffer.from(form.marketListId.padEnd(20)),
       form.content,
       new field(),
-      wallet!.publicKey!
+      form.governedAccount.extensions.transferAddress!
     )
     return ix
   }
